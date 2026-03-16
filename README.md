@@ -3,6 +3,7 @@
 **Organisation:** HumanAI Foundation
 **Name:** Juanita Cathy  
 
+
 ## Overview
 This submission covers both screening test objectives:
 
@@ -11,7 +12,7 @@ This submission covers both screening test objectives:
 
 I approached both notebooks in a research prototype style: given that TRIP Lab is research-oriented, I wanted the work to reflect that rather than just presenting minimal outputs. The second notebook is intentionally detailed, covering 5 enhancement methods, a reference-free evaluation framework, and documented reasoning for every decision.
 
-I also put together a **Research Report** independently before starting implementation — it documents my method comparisons, architecture decisions, and pipeline reasoning. It's not a proposal, just technical groundwork I did for my own reference. I've included it since it might be useful context.
+I also put together a **Research Report** independently before starting implementation: it documents my method comparisons, architecture decisions, and pipeline reasoning. It's not a proposal, just technical groundwork I did for my own reference. I've included it since it might be useful context.
 
 ---
 
