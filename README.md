@@ -1,8 +1,9 @@
 # ISSR SCREENING TEST SUBMISSION FOR TEAM-COMMUNICATION-PROJECT
 ## Team Communication Processing and Analysis in Human-Factors Simulated Environment
-**Organisation:** HumanAI Foundation
+**Organisation:** HumanAI Foundation <br>
 **Name:** Juanita Cathy  
 
+<img width="835" height="455" alt="Screenshot 2026-03-16 181651" src="https://github.com/user-attachments/assets/51180f75-88f9-4296-a46f-87044ea2c0d1" />
 
 ## Overview
 This submission covers both screening test objectives:
