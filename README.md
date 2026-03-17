@@ -12,24 +12,31 @@
 I approached both notebooks in a research prototype style: given that TRIP Lab is research-oriented, I wanted the work to reflect that rather than just presenting minimal outputs. The second notebook is intentionally detailed, covering 5 enhancement methods, a reference-free evaluation framework, and documented reasoning for every decision.
 
 I also put together a **Research Report** independently before starting implementation: it documents my method comparisons, architecture decisions, and pipeline reasoning. It's not a proposal, just technical groundwork I did for my own reference. I've included it since it might be useful context.
+
 ---
 
 ## Task 1: Dataset Identification and Evaluation
 **File:** `TASK1-TeamCommunication_Data_Identification_Notebook.ipynb`
 
 ### What is done?
-Identified and evaluated open-access audio corpora as proxies for TRIP Lab simulator audio. Three datasets compared: AMI Meeting Corpus, ICSI, LibriCSS: against project-specific criteria such as synchronized array and headset channels, real multi-speaker team interaction, natural overlap, diarization annotations.
+I've identified and evaluated open-access audio corpora as proxies for TRIP Lab simulator audio. Three datasets were compared: AMI Meeting Corpus, ICSI, LibriCSS against project-specific criteria such as:
+- synchronized array and headset channels
+- real multi-speaker team interaction
+- natural overlap and diarization annotations.
 
 The **deciding factor** was the **synchronized array and headset pair from the same session**: the array mic gives the far-field noisy input that mirrors simulator conditions, and the headset gives the clean close-talk reference needed for supervised Wave-U-Net training. 
 
-**Why I Selected this dataset:** AMI Meeting Corpus, Session ES2008a : [https://groups.inf.ed.ac.uk/ami/corpus/](https://groups.inf.ed.ac.uk/ami/corpus/)
+### **Why I Selected this dataset:** 
+**AMI Meeting Corpus, Session ES2008a : [https://groups.inf.ed.ac.uk/ami/corpus/](https://groups.inf.ed.ac.uk/ami/corpus/)**
 - Real groups of 4 people doing structured tasks together, with natural turn-taking and interruptions
 - Synchronized far-field array + close-talk headset from the same recording: This is the only evaluated dataset offering this
 - Full diarization, overlap and word-level transcript annotations per speaker
 - ~100 hours across sessions, free for academic use
 - The array/headset degradation gap is large and quantifiable which is ideal for enhancement benchmarking
+  
+*note: Considering the similarities between the Trip Lab's recording setup and this, the results can be applied to the actual lab data in the future.*
 
-**Key Numbers from exploratory analysis:**
+### **Key Numbers from exploratory analysis:**
 | Metric | Value |
 |---|---|
 | Noise floor ratio | 4.4× higher |
@@ -55,18 +62,18 @@ The **deciding factor** was the **synchronized array and headset pair from the s
 ### What is done?
 Implemented and compared 5 audio enhancement methods on a 3-minute sample of AMI ES2008a audio. Evaluated using reference-free metrics (SQUIM) to avoid cross-microphone mismatch issues inherent in array/headset comparison.
 
-**Enhancement Methods Used:**
+## **Enhancement Methods Used:**
 I implemented 5 enhancement methods in order of increasing sophistication:
 
 | Method | Type | What it does |
 |---|---|---|
 | Spectral Subtraction | DSP baseline | Estimates noise from lead-in silence, subtracts per frame |
-| Wiener Filter | DSP | Statistically optimal SNR-based gain per frequency bin |
-| MMSE-LSA | DSP | Log-spectral amplitude estimator — minimises perceptual error |
+| Wiener Filter | DSP | Statistically optimal SNR based gain per frequency bin |
+| MMSE-LSA | DSP | Log-spectral amplitude estimator minimises perceptual error |
 | Multi-band Wiener | DSP | 5 perceptual bands with different suppression floors per band |
-| SpectralMaskNet | Neural | 2-layer LSTM soft TF mask — Wave-U-Net architectural precursor |
+| SpectralMaskNet | Neural | 2-layer LSTM soft TF mask, Wave-U-Net architectural precursor |
 
-### A Note on Metrics
+### A Note on Metrics ( SQUIM )
 
 I wanted to use PESQ as the primary perceptual metric (it's in the research report) but ran into a fundamental problem: array and headset are physically different microphones. Computing `array − headset` measures microphone mismatch, not enhancement quality. This showed up empirically: SegSNR was flat at −5.2 to −5.6 dB regardless of algorithm or parameters.
 
@@ -76,7 +83,7 @@ So I switched to **SQUIM** as the primary metric: a reference-free neural qualit
 ```
 CQI = 0.50 × SQUIM + 0.30 × STOI + 0.20 × WER
 ```
-**What I found:**
+## **What I found:**
 | Method | SQUIM-STOI | SI-SDR | VAD After | CQI |
 |---|---|---|---|---|
 | Noisy Input | 0.821 | 3.6 dB | 76.8% | — |
