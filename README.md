@@ -2,8 +2,9 @@
 ## Team Communication Processing and Analysis in Human-Factors Simulated Environment
 **Organisation:** HumanAI Foundation <br>
 **Name:** Juanita Cathy  
-
 <img width="835" height="455" alt="Screenshot 2026-03-16 181651" src="https://github.com/user-attachments/assets/51180f75-88f9-4296-a46f-87044ea2c0d1" />
+
+**SHORT YOUTUBE PITCH:** [https://www.youtube.com/watch?v=gCsFXMMAZc4](https://www.youtube.com/watch?v=gCsFXMMAZc4)
 
 ## Overview
 1. **Notebook 1** — Pick and evaluate a public dataset suitable for team communication audio research
@@ -12,6 +13,9 @@
 I approached both notebooks in a research prototype style: given that TRIP Lab is research-oriented, I wanted the work to reflect that rather than just presenting minimal outputs. The second notebook is intentionally detailed, covering 5 enhancement methods, a reference-free evaluation framework, and documented reasoning for every decision.
 
 I also put together a **Research Report** independently before starting implementation: it documents my method comparisons, architecture decisions, and pipeline reasoning. It's not a proposal, just technical groundwork I did for my own reference. I've included it since it might be useful context.
+
+## Quick DEMO (audio visualizations only):
+[https://team-communication-audio-visualization.streamlit.app/](https://team-communication-audio-visualization.streamlit.app/)
 
 ---
 
