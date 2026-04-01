@@ -167,7 +167,6 @@ def load_default_audio():
         audio, _ = librosa.load(local_path, sr=SR, mono=True)
         return audio, "AMI ES2008a — Array Microphone (far-field, noisy)"
     except Exception as e:
-        st.error(f"Error loading default audio: {e}")
         np.random.seed(42)
         t = np.linspace(0, 30, 30 * SR)
 
